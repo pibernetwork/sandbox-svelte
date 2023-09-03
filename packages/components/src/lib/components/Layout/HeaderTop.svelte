@@ -8,19 +8,20 @@
   export let isProfileClose = true;
 </script>
 
-<Button on:click={() => (isMenuClose = false)} class="mx-2 h-[44px] w-[44px] justify-self-start p-0"
-  ><Bars /></Button
+<Button
+  on:click={() => (isMenuClose = false)}
+  class="mx-2 h-[2.75rem] w-[2.75rem] justify-self-start p-0"><Bars /></Button
 >
 <a
-  class="flex h-[44px] w-[94px] items-center justify-center rounded-lg bg-red-500 text-center text-neutral-300"
+  class="flex h-[2.75rem] items-center justify-center rounded-lg bg-red-500 px-4 text-center text-neutral-300"
   href="/"
 >
-  <img alt="The project logo" src={logo} class="mx-2 h-[36px] w-[36px]" /> <span>Life</span>
+  <img alt="The project logo" src={logo} class="mx-2 h-[2.25rem] w-[2.25rem]" /> <span>Life</span>
 </a>
 <Button
   color="purple"
   on:click={() => (isProfileClose = false)}
-  class="mx-2 h-[44px] w-[44px] justify-self-end p-0"
+  class="mx-2 h-[2.75rem] w-[2.75rem] justify-self-end p-0"
 >
   <ProfileCardIcon /></Button
 >

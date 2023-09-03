@@ -1,5 +1,5 @@
 <div
-  class="col-span-3 flex items-stretch justify-around gap-x-[1px] justify-self-stretch text-xs md:gap-x-2 md:text-base"
+  class="col-span-3 flex items-stretch justify-around gap-x-[0.25rem] justify-self-stretch text-xs md:gap-x-2 md:text-base"
 >
   <a href="/sports" class="flex-grow rounded bg-red-300 py-2 text-center">Sports</a>
   <a href="/nutritions" class="flex-grow rounded bg-red-300 py-2 text-center">Nutrition</a>

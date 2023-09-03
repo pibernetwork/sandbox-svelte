@@ -10,7 +10,7 @@
 
 <header>
   <div
-    class="grid min-w-[320px] grid-cols-3 grid-rows-[60px_45px] items-center justify-items-center bg-neutral-200 px-2 md:grid-rows-[70px_45px] md:px-12 lg:grid-rows-[80px_45px]"
+    class="grid min-w-[320px] grid-cols-3 grid-rows-[4rem_3rem] items-center justify-items-center bg-neutral-200 px-2 md:grid-rows-[4.5rem_3rem] md:px-12 lg:grid-rows-[5rem_3rem]"
   >
     <HeaderTop bind:isMenuClose bind:isProfileClose />
     <HeaderMenu />
