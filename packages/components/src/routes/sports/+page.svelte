@@ -2,8 +2,7 @@
   import { Heading } from 'flowbite-svelte';
 </script>
 
-<Heading tag="h1">Life</Heading>
-
+<Heading tag="h1">Sports</Heading>
 <svelte:head>
-  <title>Life</title>
+  <title>Sports</title>
 </svelte:head>
