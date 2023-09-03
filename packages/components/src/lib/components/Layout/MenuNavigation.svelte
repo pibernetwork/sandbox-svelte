@@ -1,7 +1,9 @@
 <script lang="ts">
   import { page } from '$app/stores';
+  import type { Pages } from '$lib/types';
 
   import { CloseButton, Drawer } from 'flowbite-svelte';
+  import { getContext } from 'svelte';
   import { sineIn } from 'svelte/easing';
   export let isClose = true;
 
@@ -12,6 +14,8 @@
   };
 
   $: $page.url && (isClose = true);
+
+  const pages = getContext<Pages>('navigation');
 </script>
 
 <Drawer transitionType="fly" {transitionParams} bind:hidden={isClose}>
@@ -25,11 +29,10 @@
     <CloseButton on:click={() => (isClose = true)} class="mb-4 dark:text-white" />
   </div>
   <div class="flex flex-col gap-y-2">
-    <a href="/sports" class="block rounded bg-red-300 py-2 text-center">Sports</a>
-    <a href="/nutritions" class="block rounded bg-red-300 py-2 text-center">Nutrition</a>
-    <a href="/schedule" class="block rounded bg-red-300 py-2 text-center">Schedule</a>
-    <a href="/money" class="block rounded bg-red-300 py-2 text-center">Money</a>
-    <a href="/work" class="block rounded bg-red-300 py-2 text-center">Work</a>
-    <a href="/ideas" class="block rounded bg-red-300 py-2 text-center">Ideas</a>
+    {#if pages}
+      {#each pages as page}
+        <a href={page.url} class="block rounded bg-red-300 py-2 text-center">{page.title}</a>
+      {/each}
+    {/if}
   </div>
 </Drawer>

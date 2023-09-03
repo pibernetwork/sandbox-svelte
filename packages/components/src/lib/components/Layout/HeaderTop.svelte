@@ -16,7 +16,8 @@
   class="flex h-[2.75rem] items-center justify-center rounded-lg bg-red-500 px-4 text-center text-neutral-300"
   href="/"
 >
-  <img alt="The project logo" src={logo} class="mx-2 h-[2.25rem] w-[2.25rem]" /> <span>Life</span>
+  <img alt="The project logo" src={logo} class="mx-2 h-[2.25rem] w-[2.25rem] rounded" />
+  <span>Life</span>
 </a>
 <Button
   color="purple"
