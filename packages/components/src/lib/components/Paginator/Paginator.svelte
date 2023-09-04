@@ -29,13 +29,17 @@
   $: items = getPaginatorPages(page, totalPages);
 
   const paginationItemClass = 'w-10 justify-center p-0';
-  console.log(items);
 </script>
 
 <div class="mt-4 grid grid-rows-2 items-center justify-items-center py-2 md:flex">
   <div class="flex h-[3rem] px-4">
-    <ButtonGroup>
-      <Button class={paginationItemClass} on:click={() => changePage(1)} disabled={!hasPrevPage}>
+    <ButtonGroup role="navigation" aria-label="Pagination Navigation">
+      <Button
+        class={paginationItemClass}
+        on:click={() => changePage(1)}
+        disabled={!hasPrevPage}
+        data-testid="prev-all"
+      >
         <ChevronDoubleLeft />
       </Button>
 
@@ -43,6 +47,7 @@
         class={paginationItemClass}
         on:click={() => changePage(prevPage)}
         disabled={!hasPrevPage}
+        data-testid="next-prev"
       >
         <ChevronLeft />
       </Button>
@@ -51,7 +56,9 @@
         <Button
           class={paginationItemClass + (item.small === false ? ' hidden md:flex' : '')}
           color={item.page === page ? 'red' : undefined}
-          on:click={() => changePage(item.page)}>{item.page}</Button
+          on:click={() => changePage(item.page)}
+          role="button"
+          data-testid={`page-${item.page}`}>{item.page}</Button
         >
       {/each}
 
@@ -59,6 +66,7 @@
         class={paginationItemClass}
         on:click={() => changePage(nextPage)}
         disabled={!hasNextPage}
+        data-testid="next"
       >
         <ChevronRight />
       </Button>
@@ -67,6 +75,7 @@
         class={paginationItemClass}
         on:click={() => changePage(totalPages)}
         disabled={!hasNextPage}
+        data-testid="next-all"
       >
         <ChevronDoubleRight />
       </Button>

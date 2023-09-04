@@ -7,6 +7,11 @@ export default defineConfig({
     include: ['src/**/*.{test,spec}.{js,ts}'],
 
     globals: true,
-    environment: 'jsdom'
+    environment: 'jsdom',
+    server: {
+      deps: {
+        inline: ['flowbite-svelte']
+      }
+    }
   }
 });

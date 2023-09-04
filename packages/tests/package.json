@@ -4,6 +4,8 @@
     "@sveltejs/kit": "^1.20.4",
     "@testing-library/svelte": "^4.0.3",
     "autoprefixer": "^10.4.14",
+    "flowbite-svelte": "^0.44.4",
+    "happy-dom": "^10.11.2",
     "jsdom": "^22.1.0",
     "postcss": "^8.4.24",
     "postcss-load-config": "^4.0.1",
