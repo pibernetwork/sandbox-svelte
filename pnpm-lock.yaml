@@ -64,7 +64,7 @@ importers:
         version: 4.2.0
       svelte-check:
         specifier: ^3.5.1
-        version: 3.5.1(postcss@8.4.29)(svelte@4.2.0)
+        version: 3.5.1(postcss-load-config@4.0.1)(postcss@8.4.29)(svelte@4.2.0)
       tailwindcss:
         specifier: ^3.3.3
         version: 3.3.3
@@ -92,15 +92,27 @@ importers:
       '@testing-library/svelte':
         specifier: ^4.0.3
         version: 4.0.3(svelte@4.2.0)
+      autoprefixer:
+        specifier: ^10.4.14
+        version: 10.4.15(postcss@8.4.29)
       jsdom:
         specifier: ^22.1.0
         version: 22.1.0
+      postcss:
+        specifier: ^8.4.24
+        version: 8.4.29
+      postcss-load-config:
+        specifier: ^4.0.1
+        version: 4.0.1(postcss@8.4.29)
       svelte:
         specifier: ^4.0.5
         version: 4.2.0
       svelte-check:
         specifier: ^3.4.3
-        version: 3.5.1(postcss@8.4.29)(svelte@4.2.0)
+        version: 3.5.1(postcss-load-config@4.0.1)(postcss@8.4.29)(svelte@4.2.0)
+      tailwindcss:
+        specifier: ^3.3.2
+        version: 3.3.3
       tslib:
         specifier: ^2.4.1
         version: 2.6.2
@@ -2944,7 +2956,7 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /svelte-check@3.5.1(postcss@8.4.29)(svelte@4.2.0):
+  /svelte-check@3.5.1(postcss-load-config@4.0.1)(postcss@8.4.29)(svelte@4.2.0):
     resolution: {integrity: sha512-+Zb4iHxAhdUtcUg/WJPRjlS1RJalIsWAe9Mz6G1zyznSs7dDkT7VUBdXc3q7Iwg49O/VrZgyJRvOJkjuBfKjFA==}
     hasBin: true
     peerDependencies:
@@ -2957,7 +2969,7 @@ packages:
       picocolors: 1.0.0
       sade: 1.8.1
       svelte: 4.2.0
-      svelte-preprocess: 5.0.4(postcss@8.4.29)(svelte@4.2.0)(typescript@5.2.2)
+      svelte-preprocess: 5.0.4(postcss-load-config@4.0.1)(postcss@8.4.29)(svelte@4.2.0)(typescript@5.2.2)
       typescript: 5.2.2
     transitivePeerDependencies:
       - '@babel/core'
@@ -2997,7 +3009,7 @@ packages:
       svelte: 4.2.0
     dev: true
 
-  /svelte-preprocess@5.0.4(postcss@8.4.29)(svelte@4.2.0)(typescript@5.2.2):
+  /svelte-preprocess@5.0.4(postcss-load-config@4.0.1)(postcss@8.4.29)(svelte@4.2.0)(typescript@5.2.2):
     resolution: {integrity: sha512-ABia2QegosxOGsVlsSBJvoWeXy1wUKSfF7SWJdTjLAbx/Y3SrVevvvbFNQqrSJw89+lNSsM58SipmZJ5SRi5iw==}
     engines: {node: '>= 14.10.0'}
     requiresBuild: true
@@ -3039,6 +3051,7 @@ packages:
       detect-indent: 6.1.0
       magic-string: 0.27.0
       postcss: 8.4.29
+      postcss-load-config: 4.0.1(postcss@8.4.29)
       sorcery: 0.11.0
       strip-indent: 3.0.0
       svelte: 4.2.0
