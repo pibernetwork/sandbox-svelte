@@ -29,6 +29,7 @@
   $: items = getPaginatorPages(page, totalPages);
 
   const paginationItemClass = 'w-10 justify-center p-0';
+  console.log(items);
 </script>
 
 <div class="mt-4 grid grid-rows-2 items-center justify-items-center py-2 md:flex">
@@ -37,23 +38,23 @@
       <Button class={paginationItemClass} on:click={() => changePage(1)}>
         <ChevronDoubleLeft />
       </Button>
-      {#if hasPrevPage}
-        <Button class={paginationItemClass} on:click={() => changePage(prevPage)}>
-          <ChevronLeft />
-        </Button>
-      {/if}
+
+      <Button class={paginationItemClass} on:click={() => changePage(prevPage)}>
+        <ChevronLeft />
+      </Button>
+
       {#each items as item}
         <Button
-          class={paginationItemClass}
+          class={paginationItemClass + (item.small === false ? ' hidden md:flex' : '')}
           color={item.page === page ? 'red' : undefined}
           on:click={() => changePage(item.page)}>{item.page}</Button
         >
       {/each}
-      {#if hasNextPage}
-        <Button class={paginationItemClass} on:click={() => changePage(nextPage)}>
-          <ChevronRight />
-        </Button>
-      {/if}
+
+      <Button class={paginationItemClass} on:click={() => changePage(nextPage)}>
+        <ChevronRight />
+      </Button>
+
       <Button class={paginationItemClass} on:click={() => changePage(totalPages)}>
         <ChevronDoubleRight />
       </Button>

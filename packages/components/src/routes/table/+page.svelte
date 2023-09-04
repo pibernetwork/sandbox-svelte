@@ -58,10 +58,10 @@
 </Table>
 <Paginator
   page={currentPage}
-  prevPage={4}
-  nextPage={6}
-  hasNextPage
-  hasPrevPage
+  prevPage={currentPage - 1}
+  nextPage={currentPage + 1}
+  hasNextPage={currentPage < 10}
+  hasPrevPage={currentPage > 1}
   totalPages={10}
   totalNodes={100}
   bind:currentPage
