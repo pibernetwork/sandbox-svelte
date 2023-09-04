@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+set -e
+
 pnpm -r test
 pnpm -r lint
 pnpm -r check
