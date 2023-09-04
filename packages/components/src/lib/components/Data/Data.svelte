@@ -46,6 +46,8 @@
   export let Table: ComponentType;
   export let Filter: ComponentType;
   export let Form: ComponentType;
+  export let Delete: ComponentType;
+  export let View: ComponentType;
 
   $: mode = isFiltersOpen === false ? 'list' : 'filters';
   $: mode = isCreateOpen === false ? 'list' : 'create';
@@ -67,13 +69,13 @@
   </Modal>
 {/if}
 {#if mode === 'view'}
-  <Modal title="View" bind:open={isViewOpen} autoclose outsideclose>
-    <svelte:component this={Form} on:changeMode={changeModeEvent} />
+  <Modal title="View" bind:open={isViewOpen} outsideclose>
+    <svelte:component this={View} on:changeMode={changeModeEvent} />
   </Modal>
 {/if}
 {#if mode === 'delete'}
   <Modal title="Delete" bind:open={isDeleteOpen} autoclose outsideclose>
-    <svelte:component this={Form} on:changeMode={changeModeEvent} />
+    <svelte:component this={Delete} on:changeMode={changeModeEvent} />
   </Modal>
 {/if}
 {#if mode === 'edit'}

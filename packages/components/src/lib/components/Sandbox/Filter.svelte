@@ -1,5 +1,19 @@
 <script lang="ts">
+  import type { PageMode } from '$lib/types';
   import { Button, Input, Label } from 'flowbite-svelte';
+  import { createEventDispatcher } from 'svelte';
+
+  const dispatch = createEventDispatcher<{ changeMode: { mode: PageMode } }>();
+  function changeMode(mode: PageMode) {
+    dispatch('changeMode', {
+      mode
+    });
+  }
+
+  function runFilter() {
+    alert('Run Filter');
+    changeMode('list');
+  }
 </script>
 
 <form action="#">
@@ -38,5 +52,9 @@
       <Input type="password" name="password" placeholder="•••••" required />
     </Label>
   </div>
-  <Button type="submit" class="mt-4 w-full">Login to your account</Button>
+  <div>
+    <Button on:click={runFilter}>Filter</Button>
+
+    <Button on:click={() => changeMode('list')}>Cancel</Button>
+  </div>
 </form>

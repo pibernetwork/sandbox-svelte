@@ -5,11 +5,10 @@
   import FilterAction from '../Icons/FilterAction.svelte';
   import NewAction from '../Icons/NewAction.svelte';
 
-  const dispatch = createEventDispatcher<{ changeMode: { mode: PageMode } }>();
-
   export let title: string;
+
+  const dispatch = createEventDispatcher<{ changeMode: { mode: PageMode } }>();
   function changeMode(mode: PageMode) {
-    console.log(mode);
     dispatch('changeMode', {
       mode
     });
