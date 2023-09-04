@@ -35,11 +35,15 @@
 <div class="mt-4 grid grid-rows-2 items-center justify-items-center py-2 md:flex">
   <div class="flex h-[3rem] px-4">
     <ButtonGroup>
-      <Button class={paginationItemClass} on:click={() => changePage(1)}>
+      <Button class={paginationItemClass} on:click={() => changePage(1)} disabled={!hasPrevPage}>
         <ChevronDoubleLeft />
       </Button>
 
-      <Button class={paginationItemClass} on:click={() => changePage(prevPage)}>
+      <Button
+        class={paginationItemClass}
+        on:click={() => changePage(prevPage)}
+        disabled={!hasPrevPage}
+      >
         <ChevronLeft />
       </Button>
 
@@ -51,11 +55,19 @@
         >
       {/each}
 
-      <Button class={paginationItemClass} on:click={() => changePage(nextPage)}>
+      <Button
+        class={paginationItemClass}
+        on:click={() => changePage(nextPage)}
+        disabled={!hasNextPage}
+      >
         <ChevronRight />
       </Button>
 
-      <Button class={paginationItemClass} on:click={() => changePage(totalPages)}>
+      <Button
+        class={paginationItemClass}
+        on:click={() => changePage(totalPages)}
+        disabled={!hasNextPage}
+      >
         <ChevronDoubleRight />
       </Button>
     </ButtonGroup>

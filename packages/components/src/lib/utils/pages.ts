@@ -7,7 +7,8 @@ export interface Page {
 export type Pages = Page[];
 
 const SHOW_PAGES = 7;
-const MOBILE_EDGE = 2;
+/** @TODO fix to use same logic with iterator half or not. */
+const MOBILE_EDGE = 1;
 
 export function getPaginatorPages(
   currentPage: number,

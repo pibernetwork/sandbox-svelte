@@ -26,5 +26,8 @@ module.exports = {
         parser: '@typescript-eslint/parser'
       }
     }
-  ]
+  ],
+  rules: {
+    'no-warning-comments': ['error', { terms: ['todo'], location: 'anywhere' }]
+  }
 };
