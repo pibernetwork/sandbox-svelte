@@ -1,70 +1,19 @@
 <script lang="ts">
-  import Paginator from '$lib/components/Paginator/Paginator.svelte';
-  import {
-    Heading,
-    Table,
-    TableBody,
-    TableBodyCell,
-    TableBodyRow,
-    TableHead,
-    TableHeadCell
-  } from 'flowbite-svelte';
-
-  const items = new Array(10).fill({
-    name: 'Apple MacBook Pro 17"',
-    color: 'Silver',
-    category: 'Laptop',
-    price: '$2999'
-  });
-
-  let currentPage: number = 1;
+  import FilterAction from '$lib/components/Icons/FilterAction.svelte';
+  import NewAction from '$lib/components/Icons/NewAction.svelte';
+  import Table from '$lib/components/Sandbox/Table.svelte';
+  import { Button, Heading } from 'flowbite-svelte';
 </script>
 
-<Heading tag="h1" class="mb-2">Table</Heading>
-
-<Table striped hoverable shadow>
-  <TableHead>
-    <TableHeadCell>Product name</TableHeadCell>
-    <TableHeadCell>Color</TableHeadCell>
-    <TableHeadCell>Category</TableHeadCell>
-    <TableHeadCell>Price</TableHeadCell>
-    <TableHeadCell>Product name</TableHeadCell>
-    <TableHeadCell>Color</TableHeadCell>
-    <TableHeadCell>Category</TableHeadCell>
-    <TableHeadCell>Price</TableHeadCell>
-    <TableHeadCell>Product name</TableHeadCell>
-    <TableHeadCell>Color</TableHeadCell>
-    <TableHeadCell>Category</TableHeadCell>
-    <TableHeadCell>Price</TableHeadCell>
-  </TableHead>
-  <TableBody>
-    {#each items as item}
-      <TableBodyRow>
-        <TableBodyCell class="py-2">{item.name}</TableBodyCell>
-        <TableBodyCell class="py-2">{item.color}</TableBodyCell>
-        <TableBodyCell class="py-2">{item.category}</TableBodyCell>
-        <TableBodyCell class="py-2">{item.price}</TableBodyCell>
-        <TableBodyCell class="py-2">{item.name}</TableBodyCell>
-        <TableBodyCell class="py-2">{item.color}</TableBodyCell>
-        <TableBodyCell class="py-2">{item.category}</TableBodyCell>
-        <TableBodyCell class="py-2">{item.price}</TableBodyCell>
-        <TableBodyCell class="py-2">{item.name}</TableBodyCell>
-        <TableBodyCell class="py-2">{item.color}</TableBodyCell>
-        <TableBodyCell class="py-2">{item.category}</TableBodyCell>
-        <TableBodyCell class="py-2">{item.price}</TableBodyCell>
-      </TableBodyRow>
-    {/each}
-  </TableBody>
-</Table>
-<Paginator
-  page={currentPage}
-  prevPage={currentPage - 1}
-  nextPage={currentPage + 1}
-  hasNextPage={currentPage < 10}
-  hasPrevPage={currentPage > 1}
-  totalPages={10}
-  totalNodes={100}
-  bind:currentPage
-  start={41}
-  end={50}
-/>
+<div class="flex items-center px-4 md:pr-10">
+  <Heading tag="h1" class="col-span-3 mb-2 inline-block">Table</Heading>
+  <div class="flex">
+    <Button color="yellow" class="mx-2 h-[2.25rem] w-[2.25rem] justify-self-start p-0"
+      ><FilterAction /></Button
+    >
+    <Button color="green" class="mx-2 h-[2.25rem] w-[2.25rem] justify-self-start p-0"
+      ><NewAction /></Button
+    >
+  </div>
+</div>
+<Table />
