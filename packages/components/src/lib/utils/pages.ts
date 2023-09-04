@@ -6,15 +6,15 @@ export interface Page {
 
 export type Pages = Page[];
 
-const SHOW_PAGES_EDGE = 3;
+const SHOW_PAGES = 7;
 
-const SHOW_MOBILE_PAGES_EDGE = 1;
+const SHOW_MOBILE_PAGES = 3;
 
 export function getPaginatorPages(
   currentPage: number,
   totalPages: number,
-  showPages = SHOW_PAGES_EDGE,
-  showMobilePages = SHOW_MOBILE_PAGES_EDGE
+  showPages = SHOW_PAGES,
+  showMobilePages = SHOW_MOBILE_PAGES
 ): Pages {
   if (showPages % 2 !== 1) {
     throw new Error('showPages expected odd number');
