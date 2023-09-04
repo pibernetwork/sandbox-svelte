@@ -6,34 +6,44 @@ export interface Page {
 
 export type Pages = Page[];
 
-const SHOW_PAGES = 7;
-/** @TODO fix to use same logic with iterator half or not. */
-const MOBILE_EDGE = 1;
+const SHOW_PAGES_EDGE = 3;
+
+const SHOW_MOBILE_PAGES_EDGE = 1;
 
 export function getPaginatorPages(
   currentPage: number,
   totalPages: number,
-  displayPages = SHOW_PAGES,
-  displayMobilePages = MOBILE_EDGE
+  showPages = SHOW_PAGES_EDGE,
+  showMobilePages = SHOW_MOBILE_PAGES_EDGE
 ): Pages {
-  const iterator = totalPages > displayPages ? displayPages : totalPages;
+  if (showPages % 2 !== 1) {
+    throw new Error('showPages expected odd number');
+  }
 
-  const minPage = getMinPage(totalPages, iterator, currentPage);
+  if (showMobilePages % 2 !== 1) {
+    throw new Error('showMobilePages expected odd number');
+  }
+  const showPagesIterator = totalPages > showPages ? showPages : totalPages;
+  const showMobilePagesIterator = totalPages > showMobilePages ? showMobilePages : totalPages;
+
+  const minPage = getMinPage(totalPages, showPagesIterator, currentPage);
 
   const [minMobileOnly, maxMobileOnly] = getMinMaxMobilePage(
     totalPages,
-    displayMobilePages,
+    showMobilePagesIterator,
     currentPage
   );
 
-  const numericPages = Array.from(Array(iterator), (_, index) => index + 1).map((newPage) => {
-    const pageNumber = minPage + newPage - 1;
-    const active = pageNumber === currentPage;
+  const numericPages = Array.from(Array(showPagesIterator), (_, index) => index + 1).map(
+    (newPage) => {
+      const pageNumber = minPage + newPage - 1;
+      const active = pageNumber === currentPage;
 
-    const small = active || (pageNumber >= minMobileOnly && pageNumber <= maxMobileOnly);
+      const small = active || (pageNumber >= minMobileOnly && pageNumber <= maxMobileOnly);
 
-    return { page: pageNumber, small, active };
-  });
+      return { page: pageNumber, small, active };
+    }
+  );
 
   return numericPages;
 }
@@ -56,12 +66,14 @@ function getMinPage(totalPages: number, iterator: number, currentPage: number) {
 
 export function getMinMaxMobilePage(
   totalPages: number,
-  displayMobilePages: number,
+  showMobilePages: number,
   currentPage: number
 ) {
-  let minMobileOnly = currentPage - displayMobilePages;
+  const iteratorMobilePagesHalf = (showMobilePages - (showMobilePages % 2)) / 2 || 1;
 
-  let maxMobileOnly = currentPage + displayMobilePages;
+  let minMobileOnly = currentPage - iteratorMobilePagesHalf;
+
+  let maxMobileOnly = currentPage + iteratorMobilePagesHalf;
 
   if (minMobileOnly < 0) {
     const diff = minMobileOnly * -1;

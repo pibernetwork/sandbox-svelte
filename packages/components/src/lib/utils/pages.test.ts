@@ -181,44 +181,44 @@ describe('Min and Max Mobile - 1', () => {
   });
 });
 
-describe('Min and Max Mobile - 2', () => {
+describe('Min and Max Mobile - 3', () => {
   test('1', () => {
-    const [min, max] = getMinMaxMobilePage(10, 2, 1);
+    const [min, max] = getMinMaxMobilePage(10, 5, 1);
 
     expect(min).toEqual(1);
     expect(max).toEqual(5);
   });
 
   test('2', () => {
-    const [min, max] = getMinMaxMobilePage(10, 2, 2);
+    const [min, max] = getMinMaxMobilePage(10, 5, 2);
 
     expect(min).toEqual(1);
     expect(max).toEqual(5);
   });
 
   test('3', () => {
-    const [min, max] = getMinMaxMobilePage(10, 2, 3);
+    const [min, max] = getMinMaxMobilePage(10, 5, 3);
 
     expect(min).toEqual(1);
     expect(max).toEqual(5);
   });
 
   test('4', () => {
-    const [min, max] = getMinMaxMobilePage(10, 2, 4);
+    const [min, max] = getMinMaxMobilePage(10, 5, 4);
 
     expect(min).toEqual(2);
     expect(max).toEqual(6);
   });
 
   test('7', () => {
-    const [min, max] = getMinMaxMobilePage(10, 2, 7);
+    const [min, max] = getMinMaxMobilePage(10, 5, 7);
 
     expect(min).toEqual(5);
     expect(max).toEqual(9);
   });
 
   test('10', () => {
-    const [min, max] = getMinMaxMobilePage(10, 2, 10);
+    const [min, max] = getMinMaxMobilePage(10, 5, 10);
 
     expect(min).toEqual(6);
     expect(max).toEqual(10);
