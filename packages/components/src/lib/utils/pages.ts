@@ -34,12 +34,26 @@ export function getPaginatorPages(
     maxPage = maxPage + minPage * -1;
   }
 
+  let minMobileOnly = currentPage - MOBILE_EDGE;
+
+  let maxMobileOnly = currentPage + MOBILE_EDGE;
+
+  if (minMobileOnly <= 0) {
+    minMobileOnly = 1;
+    maxMobileOnly = maxMobileOnly + minMobileOnly;
+  }
+
+  if (maxMobileOnly > totalPages) {
+    minMobileOnly = (maxMobileOnly - totalPages - minMobileOnly) * -1;
+    maxMobileOnly = totalPages;
+  }
+  console.log(minMobileOnly, maxMobileOnly, totalPages);
+
   const numericPages = Array.from(Array(iterator), (_, index) => index + 1).map((newPage) => {
     const pageNumber = minPage + newPage - 1;
     const active = pageNumber === currentPage;
 
-    const small =
-      active || !(pageNumber < currentPage - mobileOnly || pageNumber > currentPage + mobileOnly);
+    const small = active || (pageNumber >= minMobileOnly && pageNumber <= maxMobileOnly);
 
     return { page: pageNumber, small, active };
   });
@@ -48,5 +62,6 @@ export function getPaginatorPages(
     return numericPages;
   }
 
+  console.log(numericPages);
   return numericPages;
 }

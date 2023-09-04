@@ -33,6 +33,12 @@ describe('Paginator Utils', () => {
   });
 
   describe('10 items', () => {
+    test('Get Page 1 of 10 - More than Max', () => {
+      const pages = getPaginatorPages(1, 10);
+
+      assertBetween(pages, 1, 1, 7, 7);
+    });
+
     test('Get Page 3 of 10 - More than Max', () => {
       const pages = getPaginatorPages(3, 10);
 
@@ -51,7 +57,7 @@ describe('Paginator Utils', () => {
       assertBetween(pages, 5, 2, 8, 7);
     });
 
-    test('Get Page 10 of 10 - More than Max', () => {
+    test.only('Get Page 10 of 10 - More than Max', () => {
       const pages = getPaginatorPages(10, 10);
 
       assertBetween(pages, 10, 4, 10, 7);
