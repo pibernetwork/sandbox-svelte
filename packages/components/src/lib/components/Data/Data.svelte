@@ -5,17 +5,23 @@
   import PageHeader from '../Layout/PageHeader.svelte';
 
   let mode: PageMode = 'list';
+  let selected: string | null = null;
 
   function changeMode(newMode: PageMode) {
     mode = newMode;
 
     switch (newMode) {
+      case 'list': {
+        selected = null;
+        break;
+      }
       case 'filters': {
         isFiltersOpen = true;
         break;
       }
       case 'create': {
         isCreateOpen = true;
+        selected = null;
         break;
       }
       case 'edit': {
@@ -37,6 +43,11 @@
     changeMode(event.detail.mode);
   }
 
+  function changeSelectedEvent(event: CustomEvent<{ selected: string | null }>) {
+    console.log(event);
+    selected = event.detail.selected;
+  }
+
   let isFiltersOpen = false;
   let isCreateOpen = false;
   let isDeleteOpen = false;
@@ -54,17 +65,23 @@
   $: mode = isDeleteOpen === false ? 'list' : 'delete';
   $: mode = isViewOpen === false ? 'list' : 'view';
   $: mode = isEditOpen === false ? 'list' : 'edit';
+  $: selected = mode === 'list' ? null : selected;
 </script>
 
-<PageHeader on:changeMode={changeModeEvent} title="Table" />
-<svelte:component this={Table} on:changeMode={changeModeEvent} />
+{selected}
+<PageHeader on:changeMode={changeModeEvent} on:changeSelected={changeSelectedEvent} title="Table" />
+<svelte:component
+  this={Table}
+  on:changeMode={changeModeEvent}
+  on:changeSelected={changeSelectedEvent}
+/>
 {#if mode === 'filters'}
-  <Modal title="Filters" bind:open={isFiltersOpen} autoclose outsideclose>
+  <Modal title="Filters" bind:open={isFiltersOpen} autoclose>
     <svelte:component this={Filter} on:changeMode={changeModeEvent} />
   </Modal>
 {/if}
 {#if mode === 'create'}
-  <Modal title="Create" bind:open={isCreateOpen} autoclose outsideclose>
+  <Modal title="Create" bind:open={isCreateOpen} autoclose>
     <svelte:component this={Form} on:changeMode={changeModeEvent} />
   </Modal>
 {/if}
@@ -74,12 +91,12 @@
   </Modal>
 {/if}
 {#if mode === 'delete'}
-  <Modal title="Delete" bind:open={isDeleteOpen} autoclose outsideclose>
+  <Modal title="Delete" bind:open={isDeleteOpen} autoclose>
     <svelte:component this={Delete} on:changeMode={changeModeEvent} />
   </Modal>
 {/if}
 {#if mode === 'edit'}
-  <Modal title="Edit" bind:open={isEditOpen} autoclose outsideclose>
+  <Modal title="Edit" bind:open={isEditOpen} autoclose>
     <svelte:component this={Form} on:changeMode={changeModeEvent} />
   </Modal>
 {/if}

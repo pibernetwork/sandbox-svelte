@@ -1,5 +1,16 @@
 <script lang="ts">
+  import type { PageMode } from '$lib/types';
   import { Button, Input, Label } from 'flowbite-svelte';
+  import { createEventDispatcher } from 'svelte';
+  const dispatch = createEventDispatcher<{ changeMode: { mode: PageMode } }>();
+  function changeMode(mode: PageMode) {
+    dispatch('changeMode', {
+      mode
+    });
+  }
+  function submitForm() {
+    alert('Submit Form');
+  }
 </script>
 
 <form action="#">
@@ -18,5 +29,9 @@
       <Input type="email" name="email" placeholder="name@company.com" required />
     </Label>
   </div>
-  <Button type="submit" class="mt-4 w-full">Login to your account</Button>
+  <div class="mt-2">
+    <Button on:click={submitForm}>Save</Button>
+    <Button on:click={() => changeMode('list')}>Cancel</Button>
+    <Button on:click={() => changeMode('view')}>View</Button>
+  </div>
 </form>

@@ -2,6 +2,7 @@
   import DeleteAction from '$lib/components/Icons/DeleteAction.svelte';
   import ViewAction from '$lib/components/Icons/ViewAction.svelte';
   import Paginator from '$lib/components/Paginator/Paginator.svelte';
+  import type { PageMode } from '$lib/types';
   import {
     Button,
     Table,
@@ -12,8 +13,9 @@
     TableHeadCell
   } from 'flowbite-svelte';
   import { createEventDispatcher } from 'svelte';
-  type Mode = 'list' | 'view' | 'create' | 'edit' | 'delete' | 'filters';
-  const dispatch = createEventDispatcher<{ changeMode: { mode: Mode } }>();
+
+  const dispatchMode = createEventDispatcher<{ changeMode: { mode: PageMode } }>();
+  const dispatchSelected = createEventDispatcher<{ changeSelected: { selected: string | null } }>();
 
   const items = new Array(10).fill({
     name: 'Apple MacBook Pro 17"',
@@ -28,9 +30,12 @@
     currentPage = event.detail.page;
   }
 
-  function changeMode(mode: Mode) {
-    dispatch('changeMode', {
+  function navigate(mode: 'view' | 'delete', id: string | null) {
+    dispatchMode('changeMode', {
       mode
+    });
+    dispatchSelected('changeSelected', {
+      selected: id
     });
   }
 </script>
@@ -66,12 +71,12 @@
           <Button
             color="blue"
             class="h-[2rem] w-[2rem] justify-self-start p-0"
-            on:click={() => changeMode('view')}><ViewAction /></Button
+            on:click={() => navigate('view', '123')}><ViewAction /></Button
           >
           <Button
             color="red"
             class="h-[2rem] w-[2rem] justify-self-start p-0"
-            on:click={() => changeMode('delete')}><DeleteAction /></Button
+            on:click={() => navigate('delete', '321')}><DeleteAction /></Button
           >
         </TableBodyCell>
       </TableBodyRow>

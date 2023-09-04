@@ -10,7 +10,7 @@
     });
   }
 
-  function runFilter() {
+  function submitFilter() {
     alert('Run Filter');
     changeMode('list');
   }
@@ -52,8 +52,8 @@
       <Input type="password" name="password" placeholder="•••••" required />
     </Label>
   </div>
-  <div>
-    <Button on:click={runFilter}>Filter</Button>
+  <div class="mt-2">
+    <Button on:click={submitFilter}>Filter</Button>
 
     <Button on:click={() => changeMode('list')}>Cancel</Button>
   </div>
