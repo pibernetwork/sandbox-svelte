@@ -13,16 +13,29 @@
       url: '/'
     },
     {
+      title: 'Table',
+      url: '/table',
+      header: true
+    },
+    {
+      title: 'Filter Modal',
+      url: '/filter-modal',
+      header: true
+    },
+    {
       title: 'Schedule',
-      url: '/schedule'
+      url: '/schedule',
+      header: true
     },
     {
       title: 'Nutritions',
-      url: '/nutritions'
+      url: '/nutritions',
+      header: true
     },
     {
       title: 'Sports',
-      url: '/sports'
+      url: '/sports',
+      header: true
     },
     {
       title: 'Work',
@@ -42,7 +55,7 @@
 </script>
 
 <Header />
-<main class="min-h-[calc(100vh_-_12rem)] bg-neutral-300 px-2 md:px-12">
+<main class="min-h-[calc(100vh_-_12rem)] bg-neutral-300 px-2 py-2 md:px-12">
   <slot />
 </main>
 

@@ -2,7 +2,7 @@
   import type { Pages } from '$lib/types';
   import { getContext } from 'svelte';
 
-  const pages = getContext<Pages>('navigation');
+  const pages = getContext<Pages>('navigation').filter((page) => page.header);
 </script>
 
 <div

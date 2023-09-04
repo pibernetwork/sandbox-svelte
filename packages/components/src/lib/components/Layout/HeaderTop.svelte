@@ -10,16 +10,19 @@
 
 <Button
   on:click={() => (isMenuClose = false)}
+  shadow
   class="mx-2 h-[2.75rem] w-[2.75rem] justify-self-start p-0"><Bars /></Button
 >
-<a
+<Button
+  shadow
   class="flex h-[2.75rem] items-center justify-center rounded-lg bg-red-500 px-4 text-center text-neutral-300"
   href="/"
 >
   <img alt="The project logo" src={logo} class="mx-2 h-[2.25rem] w-[2.25rem] rounded" />
   <span>Life</span>
-</a>
+</Button>
 <Button
+  shadow
   color="purple"
   on:click={() => (isProfileClose = false)}
   class="mx-2 h-[2.75rem] w-[2.75rem] justify-self-end p-0"
