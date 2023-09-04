@@ -9,7 +9,7 @@ describe('Paginator', () => {
     const { getByTestId } = render(Paginator, {
       props: {
         page: 5,
-        currentPage: 5,
+
         prevPage: 4,
         nextPage: 6,
         hasNextPage: true,

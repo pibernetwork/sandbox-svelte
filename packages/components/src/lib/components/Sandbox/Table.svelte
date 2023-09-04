@@ -11,6 +11,9 @@
     TableHead,
     TableHeadCell
   } from 'flowbite-svelte';
+  import { createEventDispatcher } from 'svelte';
+  type Mode = 'list' | 'view' | 'create' | 'edit' | 'delete' | 'filters';
+  const dispatch = createEventDispatcher<{ changeMode: { mode: Mode } }>();
 
   const items = new Array(10).fill({
     name: 'Apple MacBook Pro 17"',
@@ -20,6 +23,16 @@
   });
 
   let currentPage: number = 1;
+
+  function changePage(event: CustomEvent<{ page: number }>) {
+    currentPage = event.detail.page;
+  }
+
+  function changeMode(mode: Mode) {
+    dispatch('changeMode', {
+      mode
+    });
+  }
 </script>
 
 <Table striped hoverable shadow>
@@ -50,11 +63,15 @@
         <TableBodyCell class="py-2">{item.name}</TableBodyCell>
         <TableBodyCell class="py-2">{item.color}</TableBodyCell>
         <TableBodyCell class="py-2">
-          <Button color="blue" class="h-[2rem] w-[2rem] justify-self-start p-0"
-            ><ViewAction /></Button
+          <Button
+            color="blue"
+            class="h-[2rem] w-[2rem] justify-self-start p-0"
+            on:click={() => changeMode('view')}><ViewAction /></Button
           >
-          <Button color="red" class="h-[2rem] w-[2rem] justify-self-start p-0"
-            ><DeleteAction /></Button
+          <Button
+            color="red"
+            class="h-[2rem] w-[2rem] justify-self-start p-0"
+            on:click={() => changeMode('delete')}><DeleteAction /></Button
           >
         </TableBodyCell>
       </TableBodyRow>
@@ -62,6 +79,7 @@
   </TableBody>
 </Table>
 <Paginator
+  on:changePage={changePage}
   page={currentPage}
   prevPage={currentPage - 1}
   nextPage={currentPage + 1}
@@ -69,7 +87,6 @@
   hasPrevPage={currentPage > 1}
   totalPages={10}
   totalNodes={100}
-  bind:currentPage
   start={41}
   end={50}
 />

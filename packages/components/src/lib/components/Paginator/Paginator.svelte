@@ -1,10 +1,23 @@
 <script lang="ts">
   import { getPaginatorPages } from '$lib/utils/pages';
   import { Button, ButtonGroup } from 'flowbite-svelte';
+  import { createEventDispatcher } from 'svelte';
   import ChevronDoubleLeft from '../Icons/ChevronDoubleLeft.svelte';
   import ChevronDoubleRight from '../Icons/ChevronDoubleRight.svelte';
   import ChevronLeft from '../Icons/ChevronLeft.svelte';
   import ChevronRight from '../Icons/ChevronRight.svelte';
+
+  const dispatch = createEventDispatcher<{ changePage: { page: number } }>();
+
+  function changePageEvent(newPage: number | null | undefined) {
+    if (newPage === null || newPage === undefined) {
+      return undefined;
+    }
+
+    dispatch('changePage', {
+      page: newPage
+    });
+  }
 
   export let page: number;
   export let totalPages: number;
@@ -17,14 +30,6 @@
   export let hasPrevPage: boolean;
   export let nextPage: number | null;
   export let prevPage: number | null;
-  export let currentPage: number;
-
-  function changePage(newPage: number | null | undefined) {
-    if (newPage === null || newPage === undefined) {
-      return undefined;
-    }
-    currentPage = newPage;
-  }
 
   $: items = getPaginatorPages(page, totalPages);
 
@@ -36,7 +41,7 @@
     <ButtonGroup role="navigation" aria-label="Pagination Navigation">
       <Button
         class={paginationItemClass}
-        on:click={() => changePage(1)}
+        on:click={() => changePageEvent(1)}
         disabled={!hasPrevPage}
         data-testid="prev-all"
       >
@@ -45,7 +50,7 @@
 
       <Button
         class={paginationItemClass}
-        on:click={() => changePage(prevPage)}
+        on:click={() => changePageEvent(prevPage)}
         disabled={!hasPrevPage}
         data-testid="next-prev"
       >
@@ -56,7 +61,7 @@
         <Button
           class={paginationItemClass + (item.small === false ? ' hidden md:flex' : '')}
           color={item.page === page ? 'red' : undefined}
-          on:click={() => changePage(item.page)}
+          on:click={() => changePageEvent(item.page)}
           role="button"
           data-testid={`page-${item.page}`}>{item.page}</Button
         >
@@ -64,7 +69,7 @@
 
       <Button
         class={paginationItemClass}
-        on:click={() => changePage(nextPage)}
+        on:click={() => changePageEvent(nextPage)}
         disabled={!hasNextPage}
         data-testid="next"
       >
@@ -73,7 +78,7 @@
 
       <Button
         class={paginationItemClass}
-        on:click={() => changePage(totalPages)}
+        on:click={() => changePageEvent(totalPages)}
         disabled={!hasNextPage}
         data-testid="next-all"
       >
