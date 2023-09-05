@@ -13,13 +13,6 @@
     TableHeadCell
   } from 'flowbite-svelte';
 
-  const items = new Array(10).fill({
-    name: 'Apple MacBook Pro 17"',
-    color: 'Silver',
-    category: 'Laptop',
-    price: '$2999'
-  });
-
   let page: number = 1;
 
   const setState = createStateEvent();
@@ -35,10 +28,25 @@
       isOpen: true
     });
   }
+
+  $: items = new Array(10)
+    .fill({
+      name: 'Apple MacBook Pro 17"',
+      color: 'Silver',
+      category: 'Laptop',
+      price: '$2999'
+    })
+    .map((item, index) => {
+      return {
+        ...item,
+        id: (page - 1) * 10 + index + 1
+      };
+    });
 </script>
 
 <Table striped hoverable shadow>
   <TableHead>
+    <TableHeadCell>ID</TableHeadCell>
     <TableHeadCell>Product name</TableHeadCell>
     <TableHeadCell>Color</TableHeadCell>
     <TableHeadCell>Category</TableHeadCell>
@@ -54,6 +62,7 @@
   <TableBody>
     {#each items as item}
       <TableBodyRow>
+        <TableBodyCell class="py-2">{item.id}</TableBodyCell>
         <TableBodyCell class="py-2">{item.name}</TableBodyCell>
         <TableBodyCell class="py-2">{item.color}</TableBodyCell>
         <TableBodyCell class="py-2">{item.category}</TableBodyCell>
@@ -67,15 +76,17 @@
         <TableBodyCell class="py-2">
           <Button
             aria-label="Select item to view"
+            aria-details={item.id}
             color="blue"
             class="h-[2rem] w-[2rem] justify-self-start p-0"
-            on:click={() => navigate('view', '123')}><ViewAction /></Button
+            on:click={() => navigate('view', item.id)}><ViewAction /></Button
           >
           <Button
-            aria-label="Select item to edit"
+            aria-label="Select item to delete"
+            aria-details={item.id}
             color="red"
             class="h-[2rem] w-[2rem] justify-self-start p-0"
-            on:click={() => navigate('delete', '321')}><DeleteAction /></Button
+            on:click={() => navigate('delete', item.id)}><DeleteAction /></Button
           >
         </TableBodyCell>
       </TableBodyRow>

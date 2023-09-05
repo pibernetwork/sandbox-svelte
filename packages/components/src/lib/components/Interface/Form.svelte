@@ -39,7 +39,7 @@
     {/if}
     <Button aria-label="Cancel" on:click={() => setMode(null)}>Cancel</Button>
     {#if selected}
-      <Button aria-label="Go to View" on:click={() => setMode('view')}>View</Button>
+      <Button aria-label="Go to view" on:click={() => setMode('view')}>View</Button>
     {/if}
   </div>
 </form>
