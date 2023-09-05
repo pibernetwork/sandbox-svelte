@@ -1,4 +1,6 @@
 <script lang="ts">
+  import type { ModeEventProps } from '$lib/actions/mode';
+  import type { SelectEventProps } from '$lib/actions/selected';
   import type { PageMode } from '$lib/types';
   import { Modal } from 'flowbite-svelte';
   import type { ComponentType } from 'svelte';
@@ -6,11 +8,12 @@
 
   let mode: PageMode = 'list';
   let selected: string | null = null;
+  export let title: string;
 
-  function changeMode(newMode: PageMode) {
-    mode = newMode;
+  function changeModeEvent(event: CustomEvent<ModeEventProps>) {
+    mode = event.detail.mode;
 
-    switch (newMode) {
+    switch (event.detail.mode) {
       case 'list': {
         selected = null;
         break;
@@ -39,12 +42,7 @@
     }
   }
 
-  function changeModeEvent(event: CustomEvent<{ mode: PageMode }>) {
-    changeMode(event.detail.mode);
-  }
-
-  function changeSelectedEvent(event: CustomEvent<{ selected: string | null }>) {
-    console.log(event);
+  function changeSelectedEvent(event: CustomEvent<SelectEventProps>) {
     selected = event.detail.selected;
   }
 
@@ -68,36 +66,34 @@
   $: selected = mode === 'list' ? null : selected;
 </script>
 
-{selected}
-<PageHeader on:changeMode={changeModeEvent} on:changeSelected={changeSelectedEvent} title="Table" />
+<PageHeader on:changeMode={changeModeEvent} on:changeSelected={changeSelectedEvent} {title} />
 <svelte:component
   this={Table}
   on:changeMode={changeModeEvent}
   on:changeSelected={changeSelectedEvent}
 />
 {#if mode === 'filters'}
-  <Modal title="Filters" bind:open={isFiltersOpen} autoclose>
+  <Modal title="Filters" bind:open={isFiltersOpen} outsideclose>
     <svelte:component this={Filter} on:changeMode={changeModeEvent} />
   </Modal>
 {/if}
 {#if mode === 'create'}
-  <Modal title="Create" bind:open={isCreateOpen} autoclose>
+  <Modal title="Create" bind:open={isCreateOpen} outsideclose>
     <svelte:component this={Form} on:changeMode={changeModeEvent} />
   </Modal>
 {/if}
 {#if mode === 'view'}
   <Modal title="View" bind:open={isViewOpen} outsideclose>
-    <svelte:component this={View} on:changeMode={changeModeEvent} />
+    <svelte:component this={View} on:changeMode={changeModeEvent} {selected} />
   </Modal>
 {/if}
 {#if mode === 'delete'}
-  <Modal title="Delete" bind:open={isDeleteOpen} autoclose>
-    <svelte:component this={Delete} on:changeMode={changeModeEvent} />
+  <Modal title="Delete" bind:open={isDeleteOpen} outsideclose>
+    <svelte:component this={Delete} on:changeMode={changeModeEvent} {selected} />
   </Modal>
 {/if}
 {#if mode === 'edit'}
-  <Modal title="Edit" bind:open={isEditOpen} autoclose>
-    <svelte:component this={Form} on:changeMode={changeModeEvent} />
+  <Modal title="Edit" bind:open={isEditOpen} outsideclose>
+    <svelte:component this={Form} on:changeMode={changeModeEvent} {selected} />
   </Modal>
 {/if}
-{mode}

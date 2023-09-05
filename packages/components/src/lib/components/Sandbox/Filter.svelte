@@ -1,18 +1,11 @@
 <script lang="ts">
-  import type { PageMode } from '$lib/types';
+  import { createModeEvent } from '$lib/actions/mode';
   import { Button, Input, Label } from 'flowbite-svelte';
-  import { createEventDispatcher } from 'svelte';
 
-  const dispatch = createEventDispatcher<{ changeMode: { mode: PageMode } }>();
-  function changeMode(mode: PageMode) {
-    dispatch('changeMode', {
-      mode
-    });
-  }
-
+  const setMode = createModeEvent();
   function submitFilter() {
     alert('Run Filter');
-    changeMode('list');
+    setMode('list');
   }
 </script>
 
@@ -55,6 +48,6 @@
   <div class="mt-2">
     <Button on:click={submitFilter}>Filter</Button>
 
-    <Button on:click={() => changeMode('list')}>Cancel</Button>
+    <Button on:click={() => setMode('list')}>Cancel</Button>
   </div>
 </form>

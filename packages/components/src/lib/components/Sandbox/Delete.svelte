@@ -1,25 +1,21 @@
 <script lang="ts">
-  import type { PageMode } from '$lib/types';
+  import { createModeEvent } from '$lib/actions/mode';
   import { Button } from 'flowbite-svelte';
-  import { createEventDispatcher } from 'svelte';
 
-  const dispatch = createEventDispatcher<{ changeMode: { mode: PageMode } }>();
-  function changeMode(mode: PageMode) {
-    dispatch('changeMode', {
-      mode
-    });
-  }
+  export let selected: string | null;
+
+  const setMode = createModeEvent();
 
   function deleteItem() {
     alert('Delete Item');
-    changeMode('list');
+    setMode('list');
   }
 </script>
 
-<div>Delete</div>
+<div>Delete {selected}</div>
 
 <div>
   <Button on:click={deleteItem}>Confirm</Button>
 
-  <Button on:click={() => changeMode('list')}>Close</Button>
+  <Button on:click={() => setMode('list')}>Close</Button>
 </div>

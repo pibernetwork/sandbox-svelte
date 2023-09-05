@@ -1,8 +1,9 @@
 <script lang="ts">
+  import { createModeEvent } from '$lib/actions/mode';
+  import { createSelectEvent } from '$lib/actions/selected';
   import DeleteAction from '$lib/components/Icons/DeleteAction.svelte';
   import ViewAction from '$lib/components/Icons/ViewAction.svelte';
   import Paginator from '$lib/components/Paginator/Paginator.svelte';
-  import type { PageMode } from '$lib/types';
   import {
     Button,
     Table,
@@ -12,10 +13,6 @@
     TableHead,
     TableHeadCell
   } from 'flowbite-svelte';
-  import { createEventDispatcher } from 'svelte';
-
-  const dispatchMode = createEventDispatcher<{ changeMode: { mode: PageMode } }>();
-  const dispatchSelected = createEventDispatcher<{ changeSelected: { selected: string | null } }>();
 
   const items = new Array(10).fill({
     name: 'Apple MacBook Pro 17"',
@@ -26,17 +23,16 @@
 
   let currentPage: number = 1;
 
+  const setMode = createModeEvent();
+  const setSelect = createSelectEvent();
+
   function changePage(event: CustomEvent<{ page: number }>) {
     currentPage = event.detail.page;
   }
 
   function navigate(mode: 'view' | 'delete', id: string | null) {
-    dispatchMode('changeMode', {
-      mode
-    });
-    dispatchSelected('changeSelected', {
-      selected: id
-    });
+    setMode(mode);
+    setSelect(id);
   }
 </script>
 

@@ -1,20 +1,16 @@
 <script lang="ts">
-  import type { PageMode } from '$lib/types';
+  import { createModeEvent } from '$lib/actions/mode';
   import { Button, Input, Label } from 'flowbite-svelte';
-  import { createEventDispatcher } from 'svelte';
-  const dispatch = createEventDispatcher<{ changeMode: { mode: PageMode } }>();
-  function changeMode(mode: PageMode) {
-    dispatch('changeMode', {
-      mode
-    });
-  }
+  export let selected: string | null;
+  const setMode = createModeEvent();
   function submitForm() {
     alert('Submit Form');
+    setMode('list');
   }
 </script>
 
 <form action="#">
-  <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Sign in to our platform</h3>
+  <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Edit {selected}</h3>
   <div class="mt-4 grid grid-cols-2 gap-2 md:grid-cols-3">
     <Label class="col-span-2 md:col-span-3">
       <span>Email</span>
@@ -31,7 +27,7 @@
   </div>
   <div class="mt-2">
     <Button on:click={submitForm}>Save</Button>
-    <Button on:click={() => changeMode('list')}>Cancel</Button>
-    <Button on:click={() => changeMode('view')}>View</Button>
+    <Button on:click={() => setMode('list')}>Cancel</Button>
+    <Button on:click={() => setMode('view')}>View</Button>
   </div>
 </form>

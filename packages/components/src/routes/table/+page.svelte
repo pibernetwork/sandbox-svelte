@@ -7,4 +7,4 @@
   import View from '$lib/components/Sandbox/View.svelte';
 </script>
 
-<Data {Table} {Filter} {Form} {Delete} {View} />
+<Data {Table} {Filter} {Form} {Delete} {View} title="Table v1.0.0" />
