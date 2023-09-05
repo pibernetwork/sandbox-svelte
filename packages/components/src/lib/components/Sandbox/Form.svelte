@@ -34,6 +34,8 @@
   <div class="mt-2">
     <Button on:click={submitForm}>Save</Button>
     <Button on:click={() => setMode(null)}>Cancel</Button>
-    <Button on:click={() => setMode('view')}>View</Button>
+    {#if selected}
+      <Button on:click={() => setMode('view')}>View</Button>
+    {/if}
   </div>
 </form>

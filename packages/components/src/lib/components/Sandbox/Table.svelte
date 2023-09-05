@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { createModeEvent } from '$lib/actions/mode';
-  import { createSelectEvent } from '$lib/actions/selected';
+  import { createStateEvent } from '$lib/actions/state';
   import DeleteAction from '$lib/components/Icons/DeleteAction.svelte';
   import ViewAction from '$lib/components/Icons/ViewAction.svelte';
   import Paginator from '$lib/components/Paginator/Paginator.svelte';
@@ -23,16 +22,18 @@
 
   let page: number = 1;
 
-  const setMode = createModeEvent();
-  const setSelect = createSelectEvent();
+  const setState = createStateEvent();
 
   function changePage(event: CustomEvent<{ page: number }>) {
     page = event.detail.page;
   }
 
   function navigate(mode: 'view' | 'delete', id: string | null) {
-    setMode(mode);
-    setSelect(id);
+    setState({
+      mode,
+      selected: id,
+      isOpen: true
+    });
   }
 </script>
 
