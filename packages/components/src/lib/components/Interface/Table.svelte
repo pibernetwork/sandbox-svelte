@@ -2,10 +2,19 @@
   import Paginator from '$lib/components/Paginator/Paginator.svelte';
 
   export let page: number = 1;
+  // export let sortBy: string;
+  // export let sortOrder: string;
+
+  // type T = $$Generic;
 
   function changePage(event: CustomEvent<{ page: number }>) {
     page = event.detail.page;
   }
+
+  // function changeSort(event: CustomEvent<{ sortBy: string; sortOrder: string }>) {
+  //   sortBy = event.detail.sortBy;
+  //   sortOrder = event.detail.sortOrder;
+  // }
 </script>
 
 <slot />

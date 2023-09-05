@@ -4,9 +4,14 @@
 
   export let selected: string | null;
 
+  export let submitForm: (() => void) | null = null;
+
   const setMode = createModeEvent();
 
-  function submitForm() {
+  function enhanceForm() {
+    if (submitForm) {
+      submitForm();
+    }
     setMode(null);
   }
 </script>
@@ -20,9 +25,9 @@
   <slot />
   <div class="mt-2">
     {#if selected}
-      <Button aria-label="Save" on:click={submitForm}>Save</Button>
+      <Button aria-label="Save" on:click={enhanceForm}>Save</Button>
     {:else}
-      <Button aria-label="Create" on:click={submitForm}>Create</Button>
+      <Button aria-label="Create" on:click={enhanceForm}>Create</Button>
     {/if}
     <Button aria-label="Cancel" on:click={() => setMode(null)}>Cancel</Button>
     {#if selected}

@@ -4,7 +4,12 @@
 
   const setMode = createModeEvent();
 
-  function submitFilter() {
+  export let submitFilter: (() => void) | null = null;
+
+  function enhanceFilter() {
+    if (submitFilter) {
+      submitFilter();
+    }
     setMode(null);
   }
 </script>
@@ -12,7 +17,7 @@
 <form action="#">
   <slot />
   <div class="mt-2">
-    <Button aria-label="Save filters" on:click={submitFilter}>Filter</Button>
+    <Button aria-label="Save filters" on:click={enhanceFilter}>Filter</Button>
 
     <Button aria-label="Close filters" on:click={() => setMode(null)}>Close</Button>
   </div>

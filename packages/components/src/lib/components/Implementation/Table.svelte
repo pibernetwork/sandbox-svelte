@@ -11,6 +11,7 @@
   import TableWrapper from '../Interface/Table.svelte';
 
   let page: number = 1;
+
   // need to have page here
   $: items = new Array(10)
     .fill({
