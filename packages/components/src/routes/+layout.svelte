@@ -13,8 +13,18 @@
       url: '/'
     },
     {
-      title: 'Table',
-      url: '/table',
+      title: 'Table 1',
+      url: '/table-1',
+      header: true
+    },
+    {
+      title: 'Table 2',
+      url: '/table-2',
+      header: true
+    },
+    {
+      title: 'Table 3',
+      url: '/table-3',
       header: true
     },
     {

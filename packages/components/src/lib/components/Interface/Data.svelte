@@ -5,17 +5,13 @@
   import { Modal } from 'flowbite-svelte';
 
   import PageHeader from '$lib/components/Layout/PageHeader.svelte';
-  import type DeleteWrapper from '$lib/components/Sandbox/Delete.svelte';
-  import type FilterWrapper from '$lib/components/Sandbox/Filter.svelte';
-  import type FormWrapper from '$lib/components/Sandbox/Form.svelte';
-  import type TableWrapper from '$lib/components/Sandbox/Table.svelte';
-  import type ViewWrapper from '$lib/components/Sandbox/View.svelte';
+  import type { ComponentType } from 'svelte';
 
-  export let Table: typeof TableWrapper;
-  export let Filter: typeof FilterWrapper;
-  export let Form: typeof FormWrapper;
-  export let Delete: typeof DeleteWrapper;
-  export let View: typeof ViewWrapper;
+  export let Table: ComponentType;
+  export let Filter: ComponentType;
+  export let Form: ComponentType;
+  export let Delete: ComponentType;
+  export let View: ComponentType;
 
   export let title: string;
 
@@ -25,12 +21,14 @@
   let isOpen = false;
 
   function setState(event: CustomEvent<SetStateProps>) {
+    console.log('get set state');
     mode = event.detail.mode;
     selected = event.detail.selected;
     isOpen = event.detail.isOpen;
   }
 
   function setMode(event: CustomEvent<ModeEventProps>) {
+    console.log('get set mode');
     mode = event.detail.mode;
     if (mode !== null) {
       isOpen = true;
@@ -42,6 +40,7 @@
   $: selected = mode === null ? null : selected;
 </script>
 
+{JSON.stringify({ mode, selected, isOpen })}
 <PageHeader on:setMode={setMode} {title} on:setState={setState} />
 <svelte:component this={Table} on:setMode={setMode} on:setState={setState} />
 <Modal bind:open={isOpen} outsideclose>
