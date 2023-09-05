@@ -1,11 +1,13 @@
 <script lang="ts">
   import { createModeEvent } from '$lib/actions/mode';
   import { Button, Input, Label } from 'flowbite-svelte';
+
   export let selected: string | null;
+
   const setMode = createModeEvent();
+
   function submitForm() {
-    alert('Submit Form');
-    setMode('list');
+    setMode(null);
   }
 </script>
 
@@ -27,7 +29,7 @@
   </div>
   <div class="mt-2">
     <Button on:click={submitForm}>Save</Button>
-    <Button on:click={() => setMode('list')}>Cancel</Button>
+    <Button on:click={() => setMode(null)}>Cancel</Button>
     <Button on:click={() => setMode('view')}>View</Button>
   </div>
 </form>

@@ -21,13 +21,13 @@
     price: '$2999'
   });
 
-  let currentPage: number = 1;
+  let page: number = 1;
 
   const setMode = createModeEvent();
   const setSelect = createSelectEvent();
 
   function changePage(event: CustomEvent<{ page: number }>) {
-    currentPage = event.detail.page;
+    page = event.detail.page;
   }
 
   function navigate(mode: 'view' | 'delete', id: string | null) {
@@ -81,11 +81,11 @@
 </Table>
 <Paginator
   on:changePage={changePage}
-  page={currentPage}
-  prevPage={currentPage - 1}
-  nextPage={currentPage + 1}
-  hasNextPage={currentPage < 10}
-  hasPrevPage={currentPage > 1}
+  {page}
+  prevPage={page - 1}
+  nextPage={page + 1}
+  hasNextPage={page < 10}
+  hasPrevPage={page > 1}
   totalPages={10}
   totalNodes={100}
   start={41}

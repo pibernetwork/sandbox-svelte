@@ -3,9 +3,9 @@
   import { Button, Input, Label } from 'flowbite-svelte';
 
   const setMode = createModeEvent();
+
   function submitFilter() {
-    alert('Run Filter');
-    setMode('list');
+    setMode(null);
   }
 </script>
 
@@ -48,6 +48,6 @@
   <div class="mt-2">
     <Button on:click={submitFilter}>Filter</Button>
 
-    <Button on:click={() => setMode('list')}>Cancel</Button>
+    <Button on:click={() => setMode(null)}>Cancel</Button>
   </div>
 </form>

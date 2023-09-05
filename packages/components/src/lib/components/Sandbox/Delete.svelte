@@ -7,8 +7,7 @@
   const setMode = createModeEvent();
 
   function deleteItem() {
-    alert('Delete Item');
-    setMode('list');
+    setMode(null);
   }
 </script>
 
@@ -17,5 +16,5 @@
 <div>
   <Button on:click={deleteItem}>Confirm</Button>
 
-  <Button on:click={() => setMode('list')}>Close</Button>
+  <Button on:click={() => setMode(null)}>Close</Button>
 </div>

@@ -7,93 +7,52 @@
   import PageHeader from '../Layout/PageHeader.svelte';
 
   export let title: string;
-  // components
+
   export let Table: ComponentType;
   export let Filter: ComponentType;
   export let Form: ComponentType;
   export let Delete: ComponentType;
   export let View: ComponentType;
 
-  let mode: PageMode = 'list';
+  let mode: PageMode = null;
   let selected: string | null = null;
-  let isFiltersOpen = false;
-  let isCreateOpen = false;
-  let isDeleteOpen = false;
-  let isViewOpen = false;
-  let isEditOpen = false;
 
-  function changeModeEvent(event: CustomEvent<ModeEventProps>) {
+  let isOpen = false;
+
+  function changeMode(event: CustomEvent<ModeEventProps>) {
     mode = event.detail.mode;
 
-    switch (event.detail.mode) {
-      case 'list': {
-        selected = null;
-        break;
-      }
-      case 'filters': {
-        isFiltersOpen = true;
-        break;
-      }
-      case 'create': {
-        isCreateOpen = true;
-        selected = null;
-        break;
-      }
-      case 'edit': {
-        isEditOpen = true;
-        break;
-      }
-      case 'delete': {
-        isDeleteOpen = true;
-        break;
-      }
-      case 'view': {
-        isViewOpen = true;
-        break;
-      }
+    if (mode === null) {
+      selected = null;
+      return;
     }
+
+    isOpen = true;
   }
 
-  function changeSelectedEvent(event: CustomEvent<SelectEventProps>) {
+  function changeSelected(event: CustomEvent<SelectEventProps>) {
     selected = event.detail.selected;
   }
 
-  $: mode = isFiltersOpen === false ? 'list' : 'filters';
-  $: mode = isCreateOpen === false ? 'list' : 'create';
-  $: mode = isDeleteOpen === false ? 'list' : 'delete';
-  $: mode = isViewOpen === false ? 'list' : 'view';
-  $: mode = isEditOpen === false ? 'list' : 'edit';
-  $: selected = mode === 'list' ? null : selected;
+  $: selected = mode === null ? null : selected;
 </script>
 
-<PageHeader on:changeMode={changeModeEvent} on:changeSelected={changeSelectedEvent} {title} />
-<svelte:component
-  this={Table}
-  on:changeMode={changeModeEvent}
-  on:changeSelected={changeSelectedEvent}
-/>
-{#if mode === 'filters'}
-  <Modal title="Filters" bind:open={isFiltersOpen} outsideclose>
-    <svelte:component this={Filter} on:changeMode={changeModeEvent} />
-  </Modal>
-{/if}
-{#if mode === 'create'}
-  <Modal title="Create" bind:open={isCreateOpen} outsideclose>
-    <svelte:component this={Form} on:changeMode={changeModeEvent} />
-  </Modal>
-{/if}
-{#if mode === 'view'}
-  <Modal title="View" bind:open={isViewOpen} outsideclose>
-    <svelte:component this={View} on:changeMode={changeModeEvent} {selected} />
-  </Modal>
-{/if}
-{#if mode === 'delete'}
-  <Modal title="Delete" bind:open={isDeleteOpen} outsideclose>
-    <svelte:component this={Delete} on:changeMode={changeModeEvent} {selected} />
-  </Modal>
-{/if}
-{#if mode === 'edit'}
-  <Modal title="Edit" bind:open={isEditOpen} outsideclose>
-    <svelte:component this={Form} on:changeMode={changeModeEvent} {selected} />
-  </Modal>
-{/if}
+<PageHeader on:changeMode={changeMode} on:changeSelected={changeSelected} {title} />
+<svelte:component this={Table} on:changeMode={changeMode} on:changeSelected={changeSelected} />
+<Modal bind:open={isOpen} outsideclose>
+  {#if mode === 'filters'}
+    <svelte:component this={Filter} on:changeMode={changeMode} />
+  {/if}
+  {#if mode === 'create'}
+    <svelte:component this={Form} on:changeMode={changeMode} />
+  {/if}
+  {#if mode === 'view'}
+    <svelte:component this={View} on:changeMode={changeMode} {selected} />
+  {/if}
+  {#if mode === 'delete'}
+    <svelte:component this={Delete} on:changeMode={changeMode} {selected} />
+  {/if}
+  {#if mode === 'edit'}
+    <svelte:component this={Form} on:changeMode={changeMode} {selected} />
+  {/if}
+</Modal>
