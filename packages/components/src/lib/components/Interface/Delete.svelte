@@ -12,7 +12,7 @@
 </script>
 
 <div>Delete {selected}</div>
-
+<slot />
 <div>
   <Button aria-label="Confirm delete" on:click={deleteItem}>Confirm</Button>
   <Button aria-label="Cancel delete" on:click={() => setMode(null)}>Cancel</Button>

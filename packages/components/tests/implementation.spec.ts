@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test';
 
 test('interface has expected h1', async ({ page }) => {
-  await page.goto('/interface');
-  await expect(page.getByRole('heading', { name: 'Interface - v1.0.0' })).toBeVisible();
+  await page.goto('/implementation');
+  await expect(page.getByRole('heading', { name: 'Implementation - v1.0.0' })).toBeVisible();
 });
 
 // Modal
@@ -39,7 +39,7 @@ const SELECT_DELETE = /Select item to delete/;
 
 test.describe('Filters', () => {
   test('Open filters', async ({ page }) => {
-    await page.goto('/interface');
+    await page.goto('/implementation');
 
     await page.getByRole('button', { name: TO_FILTER }).click();
 
@@ -48,7 +48,7 @@ test.describe('Filters', () => {
   });
 
   test('Submit filters', async ({ page }) => {
-    await page.goto('/interface');
+    await page.goto('/implementation');
 
     await page.getByRole('button', { name: TO_FILTER }).click();
     await page.getByRole('button', { name: FILTER_SAVE }).click();
@@ -57,7 +57,7 @@ test.describe('Filters', () => {
   });
 
   test('Close by Mode', async ({ page }) => {
-    await page.goto('/interface');
+    await page.goto('/implementation');
 
     await page.getByRole('button', { name: TO_FILTER }).click();
     await page.getByRole('button', { name: FILTER_CLOSE }).click();
@@ -66,7 +66,7 @@ test.describe('Filters', () => {
   });
 
   test('Close by Native Button', async ({ page }) => {
-    await page.goto('/interface');
+    await page.goto('/implementation');
 
     await page.getByRole('button', { name: TO_FILTER }).click();
     await page.getByRole('button', { name: MODAL_CLOSE }).click();
@@ -75,7 +75,7 @@ test.describe('Filters', () => {
   });
 
   test('Open twice by Mode', async ({ page }) => {
-    await page.goto('/interface');
+    await page.goto('/implementation');
 
     await page.getByRole('button', { name: TO_FILTER }).click();
     await page.getByRole('button', { name: FILTER_CLOSE }).click();
@@ -85,7 +85,7 @@ test.describe('Filters', () => {
   });
 
   test('Open twice by Native Button', async ({ page }) => {
-    await page.goto('/interface');
+    await page.goto('/implementation');
 
     await page.getByRole('button', { name: TO_FILTER }).click();
     await page.getByRole('button', { name: MODAL_CLOSE }).click();
@@ -97,7 +97,7 @@ test.describe('Filters', () => {
 
 test.describe('Create', () => {
   test('Open Create New', async ({ page }) => {
-    await page.goto('/interface');
+    await page.goto('/implementation');
 
     await page.getByRole('button', { name: TO_CREATE }).click();
 
@@ -106,7 +106,7 @@ test.describe('Create', () => {
   });
 
   test('Submit create new', async ({ page }) => {
-    await page.goto('/interface');
+    await page.goto('/implementation');
 
     await page.getByRole('button', { name: TO_CREATE }).click();
     await page.getByRole('button', { name: FORM_SAVE_CREATE }).click();
@@ -115,7 +115,7 @@ test.describe('Create', () => {
   });
 
   test('Close by Cancel', async ({ page }) => {
-    await page.goto('/interface');
+    await page.goto('/implementation');
 
     await page.getByRole('button', { name: TO_CREATE }).click();
     await page.getByRole('button', { name: FORM_CANCEL }).click();
@@ -124,7 +124,7 @@ test.describe('Create', () => {
   });
 
   test('Close by Native Button', async ({ page }) => {
-    await page.goto('/interface');
+    await page.goto('/implementation');
 
     await page.getByRole('button', { name: TO_CREATE }).click();
     await page.getByRole('button', { name: MODAL_CLOSE }).click();
@@ -133,7 +133,7 @@ test.describe('Create', () => {
   });
 
   test('Open twice by Mode', async ({ page }) => {
-    await page.goto('/interface');
+    await page.goto('/implementation');
 
     await page.getByRole('button', { name: TO_CREATE }).click();
     await page.getByRole('button', { name: FORM_CANCEL }).click();
@@ -143,7 +143,7 @@ test.describe('Create', () => {
   });
 
   test('Open twice by Native Button', async ({ page }) => {
-    await page.goto('/interface');
+    await page.goto('/implementation');
 
     await page.getByRole('button', { name: TO_CREATE }).click();
     await page.getByRole('button', { name: MODAL_CLOSE }).click();
@@ -158,7 +158,7 @@ test.describe('Create', () => {
 
 test.describe('View', () => {
   test('Open View - Select Item', async ({ page }) => {
-    await page.goto('/interface');
+    await page.goto('/implementation');
 
     await page.getByRole('button', { name: SELECT_VIEW }).nth(4).click();
 
@@ -168,7 +168,7 @@ test.describe('View', () => {
   });
 
   test('Close by Cancel', async ({ page }) => {
-    await page.goto('/interface');
+    await page.goto('/implementation');
 
     await page.getByRole('button', { name: SELECT_VIEW }).nth(4).click();
     await page.getByRole('button', { name: TO_LIST }).click();
@@ -177,7 +177,7 @@ test.describe('View', () => {
   });
 
   test('Close by Native Button', async ({ page }) => {
-    await page.goto('/interface');
+    await page.goto('/implementation');
 
     await page.getByRole('button', { name: SELECT_VIEW }).nth(4).click();
     await page.getByRole('button', { name: MODAL_CLOSE }).click();
@@ -186,7 +186,7 @@ test.describe('View', () => {
   });
 
   test('Open twice by Mode', async ({ page }) => {
-    await page.goto('/interface');
+    await page.goto('/implementation');
 
     await page.getByRole('button', { name: SELECT_VIEW }).nth(4).click();
     await page.getByRole('button', { name: TO_LIST }).click();
@@ -196,7 +196,7 @@ test.describe('View', () => {
   });
 
   test('Open twice by Native Button', async ({ page }) => {
-    await page.goto('/interface');
+    await page.goto('/implementation');
 
     await page.getByRole('button', { name: SELECT_VIEW }).nth(4).click();
     await page.getByRole('button', { name: MODAL_CLOSE }).click();
@@ -208,7 +208,7 @@ test.describe('View', () => {
 
 test.describe('Delete', () => {
   test('Open Delete - Select Item', async ({ page }) => {
-    await page.goto('/interface');
+    await page.goto('/implementation');
 
     const button = await page.getByRole('button', { name: SELECT_DELETE }).nth(4);
 
@@ -219,7 +219,7 @@ test.describe('Delete', () => {
   });
 
   test('Confirm Delete', async ({ page }) => {
-    await page.goto('/interface');
+    await page.goto('/implementation');
 
     await page.getByRole('button', { name: SELECT_DELETE }).nth(4).click();
     await page.getByRole('button', { name: CONFIRM_DELETE }).click();
@@ -228,7 +228,7 @@ test.describe('Delete', () => {
   });
 
   test('Close by Cancel', async ({ page }) => {
-    await page.goto('/interface');
+    await page.goto('/implementation');
 
     await page.getByRole('button', { name: SELECT_DELETE }).nth(4).click();
     await page.getByRole('button', { name: CANCEL_DELETE }).click();
@@ -237,7 +237,7 @@ test.describe('Delete', () => {
   });
 
   test('Close by Native Button', async ({ page }) => {
-    await page.goto('/interface');
+    await page.goto('/implementation');
 
     await page.getByRole('button', { name: SELECT_DELETE }).nth(4).click();
     await page.getByRole('button', { name: MODAL_CLOSE }).click();
@@ -246,7 +246,7 @@ test.describe('Delete', () => {
   });
 
   test('Open twice by Mode', async ({ page }) => {
-    await page.goto('/interface');
+    await page.goto('/implementation');
 
     await page.getByRole('button', { name: SELECT_DELETE }).nth(4).click();
     await page.getByRole('button', { name: CANCEL_DELETE }).click();
@@ -256,7 +256,7 @@ test.describe('Delete', () => {
   });
 
   test('Open twice by Native Button', async ({ page }) => {
-    await page.goto('/interface');
+    await page.goto('/implementation');
 
     await page.getByRole('button', { name: SELECT_DELETE }).nth(4).click();
     await page.getByRole('button', { name: MODAL_CLOSE }).click();
@@ -268,7 +268,7 @@ test.describe('Delete', () => {
 
 test.describe('Edit', () => {
   test('Go to Edit', async ({ page }) => {
-    await page.goto('/interface');
+    await page.goto('/implementation');
 
     await page.getByRole('button', { name: SELECT_VIEW }).nth(4).click();
     await page.getByRole('button', { name: TO_EDIT }).click();
@@ -279,7 +279,7 @@ test.describe('Edit', () => {
   });
 
   test('Save Edit', async ({ page }) => {
-    await page.goto('/interface');
+    await page.goto('/implementation');
 
     await page.getByRole('button', { name: SELECT_VIEW }).nth(4).click();
     await page.getByRole('button', { name: TO_EDIT }).click();
@@ -289,7 +289,7 @@ test.describe('Edit', () => {
   });
 
   test('Close by Cancel', async ({ page }) => {
-    await page.goto('/interface');
+    await page.goto('/implementation');
 
     await page.getByRole('button', { name: SELECT_VIEW }).nth(4).click();
     await page.getByRole('button', { name: TO_EDIT }).click();
@@ -299,7 +299,7 @@ test.describe('Edit', () => {
   });
 
   test('Close by Native Button', async ({ page }) => {
-    await page.goto('/interface');
+    await page.goto('/implementation');
 
     await page.getByRole('button', { name: SELECT_VIEW }).nth(4).click();
     await page.getByRole('button', { name: TO_EDIT }).click();
@@ -309,7 +309,7 @@ test.describe('Edit', () => {
   });
 
   test('Go to View', async ({ page }) => {
-    await page.goto('/interface');
+    await page.goto('/implementation');
 
     await page.getByRole('button', { name: SELECT_VIEW }).nth(4).click();
     await page.getByRole('button', { name: TO_EDIT }).click();
