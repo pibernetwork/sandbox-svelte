@@ -5,10 +5,10 @@ export interface SelectEventProps {
 }
 
 export function createSelectEvent() {
-  const dispatchSelected = createEventDispatcher<{ changeSelected: SelectEventProps }>();
+  const dispatchSelected = createEventDispatcher<{ setSelected: SelectEventProps }>();
 
   return (id: string | null) =>
-    dispatchSelected('changeSelected', {
+    dispatchSelected('setSelected', {
       selected: id
     });
 }

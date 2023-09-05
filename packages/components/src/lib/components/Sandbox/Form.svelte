@@ -12,7 +12,11 @@
 </script>
 
 <form action="#">
-  <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Edit {selected}</h3>
+  {#if selected}
+    <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Edit {selected}</h3>
+  {:else}
+    <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Create</h3>
+  {/if}
   <div class="mt-4 grid grid-cols-2 gap-2 md:grid-cols-3">
     <Label class="col-span-2 md:col-span-3">
       <span>Email</span>

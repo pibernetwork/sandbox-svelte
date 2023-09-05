@@ -1,18 +1,12 @@
 <script lang="ts">
-  import type { PageMode } from '$lib/types';
+  import { createModeEvent } from '$lib/actions/mode';
   import { Button, Heading } from 'flowbite-svelte';
-  import { createEventDispatcher } from 'svelte';
   import FilterAction from '../Icons/FilterAction.svelte';
   import NewAction from '../Icons/NewAction.svelte';
 
   export let title: string;
 
-  const dispatch = createEventDispatcher<{ changeMode: { mode: PageMode } }>();
-  function changeMode(mode: PageMode) {
-    dispatch('changeMode', {
-      mode
-    });
-  }
+  const setMode = createModeEvent();
 </script>
 
 <svelte:head>
@@ -24,12 +18,12 @@
     <Button
       color="yellow"
       class="mx-2 h-[2.25rem] w-[2.25rem] justify-self-start p-0"
-      on:click={() => changeMode('filters')}><FilterAction /></Button
+      on:click={() => setMode('filters')}><FilterAction /></Button
     >
     <Button
       color="green"
       class="mx-2 h-[2.25rem] w-[2.25rem] justify-self-start p-0"
-      on:click={() => changeMode('create')}><NewAction /></Button
+      on:click={() => setMode('create')}><NewAction /></Button
     >
   </div>
 </div>

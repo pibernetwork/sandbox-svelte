@@ -6,10 +6,10 @@ export interface ModeEventProps {
 }
 
 export function createModeEvent() {
-  const dispatch = createEventDispatcher<{ changeMode: ModeEventProps }>();
+  const dispatch = createEventDispatcher<{ setMode: ModeEventProps }>();
 
   return (mode: PageMode) =>
-    dispatch('changeMode', {
+    dispatch('setMode', {
       mode
     });
 }
