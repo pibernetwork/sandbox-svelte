@@ -6,9 +6,21 @@
   import type { ComponentType } from 'svelte';
   import PageHeader from '../Layout/PageHeader.svelte';
 
+  export let title: string;
+  // components
+  export let Table: ComponentType;
+  export let Filter: ComponentType;
+  export let Form: ComponentType;
+  export let Delete: ComponentType;
+  export let View: ComponentType;
+
   let mode: PageMode = 'list';
   let selected: string | null = null;
-  export let title: string;
+  let isFiltersOpen = false;
+  let isCreateOpen = false;
+  let isDeleteOpen = false;
+  let isViewOpen = false;
+  let isEditOpen = false;
 
   function changeModeEvent(event: CustomEvent<ModeEventProps>) {
     mode = event.detail.mode;
@@ -45,18 +57,6 @@
   function changeSelectedEvent(event: CustomEvent<SelectEventProps>) {
     selected = event.detail.selected;
   }
-
-  let isFiltersOpen = false;
-  let isCreateOpen = false;
-  let isDeleteOpen = false;
-  let isViewOpen = false;
-  let isEditOpen = false;
-
-  export let Table: ComponentType;
-  export let Filter: ComponentType;
-  export let Form: ComponentType;
-  export let Delete: ComponentType;
-  export let View: ComponentType;
 
   $: mode = isFiltersOpen === false ? 'list' : 'filters';
   $: mode = isCreateOpen === false ? 'list' : 'create';
