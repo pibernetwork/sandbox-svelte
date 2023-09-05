@@ -16,11 +16,13 @@
   <Heading tag="h1" class="col-span-3 mb-2 inline-block">{title}</Heading>
   <div class="flex">
     <Button
+      aria-label="Go to filters"
       color="yellow"
       class="mx-2 h-[2.25rem] w-[2.25rem] justify-self-start p-0"
       on:click={() => setMode('filters')}><FilterAction /></Button
     >
     <Button
+      aria-label="Go to create"
       color="green"
       class="mx-2 h-[2.25rem] w-[2.25rem] justify-self-start p-0"
       on:click={() => setMode('create')}><NewAction /></Button

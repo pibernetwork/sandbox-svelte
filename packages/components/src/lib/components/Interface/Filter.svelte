@@ -46,8 +46,8 @@
     </Label>
   </div>
   <div class="mt-2">
-    <Button on:click={submitFilter}>Filter</Button>
+    <Button aria-label="Save filters" on:click={submitFilter}>Filter</Button>
 
-    <Button on:click={() => setMode(null)}>Cancel</Button>
+    <Button aria-label="Close filters" on:click={() => setMode(null)}>Close</Button>
   </div>
 </form>

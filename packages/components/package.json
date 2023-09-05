@@ -34,9 +34,9 @@
     "format": "prettier  . --write .",
     "lint": "prettier  . --check . && eslint .",
     "preview": "vite preview",
-    "test": "vitest run",
+    "test": "pnpm run test:unit && pnpm run test:integration",
     "test:integration": "playwright test",
-    "test:unit": "vitest"
+    "test:unit": "vitest run"
   },
   "type": "module",
   "version": "0.0.1"

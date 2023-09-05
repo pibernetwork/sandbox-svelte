@@ -14,7 +14,6 @@
 <div>Delete {selected}</div>
 
 <div>
-  <Button on:click={deleteItem}>Confirm</Button>
-
-  <Button on:click={() => setMode(null)}>Close</Button>
+  <Button aria-label="Confirm" on:click={deleteItem}>Confirm</Button>
+  <Button aria-label="Close" on:click={() => setMode(null)}>Close</Button>
 </div>

@@ -13,13 +13,13 @@
       url: '/'
     },
     {
-      title: 'Table 1',
-      url: '/table-1',
+      title: 'Implementation',
+      url: '/implementation',
       header: true
     },
     {
-      title: 'Table 2',
-      url: '/table-2',
+      title: 'Interface',
+      url: '/interface',
       header: true
     },
     {

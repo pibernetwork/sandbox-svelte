@@ -32,10 +32,14 @@
     </Label>
   </div>
   <div class="mt-2">
-    <Button on:click={submitForm}>Save</Button>
-    <Button on:click={() => setMode(null)}>Cancel</Button>
     {#if selected}
-      <Button on:click={() => setMode('view')}>View</Button>
+      <Button aria-label="Save" on:click={submitForm}>Save</Button>
+    {:else}
+      <Button aria-label="Create" on:click={submitForm}>Create</Button>
+    {/if}
+    <Button aria-label="Cancel" on:click={() => setMode(null)}>Cancel</Button>
+    {#if selected}
+      <Button aria-label="Go to View" on:click={() => setMode('view')}>View</Button>
     {/if}
   </div>
 </form>

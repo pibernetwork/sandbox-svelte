@@ -15,7 +15,7 @@
 <div>View {selected}</div>
 <slot />
 <div>
-  <Button on:click={() => callMode('edit')}>Edit</Button>
-  <Button on:click={() => callMode('delete')}>Delete</Button>
-  <Button on:click={() => callMode(null)}>Back</Button>
+  <Button aria-label="Go to edit" on:click={() => callMode('edit')}>Edit</Button>
+  <Button aria-label="Go to delete" on:click={() => callMode('delete')}>Delete</Button>
+  <Button aria-label="Go to list" on:click={() => callMode(null)}>Close</Button>
 </div>

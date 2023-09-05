@@ -66,11 +66,13 @@
         <TableBodyCell class="py-2">{item.color}</TableBodyCell>
         <TableBodyCell class="py-2">
           <Button
+            aria-label="Select item to view"
             color="blue"
             class="h-[2rem] w-[2rem] justify-self-start p-0"
             on:click={() => navigate('view', '123')}><ViewAction /></Button
           >
           <Button
+            aria-label="Select item to edit"
             color="red"
             class="h-[2rem] w-[2rem] justify-self-start p-0"
             on:click={() => navigate('delete', '321')}><DeleteAction /></Button

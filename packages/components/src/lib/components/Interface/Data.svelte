@@ -4,7 +4,7 @@
   import type { PageMode } from '$lib/types';
   import { Modal } from 'flowbite-svelte';
 
-  import PageHeader from '$lib/components/Layout/PageHeader.svelte';
+  import PageHeader from '$lib/components/Interface/Header.svelte';
   import type { ComponentType } from 'svelte';
 
   export let Table: ComponentType;
@@ -21,14 +21,12 @@
   let isOpen = false;
 
   function setState(event: CustomEvent<SetStateProps>) {
-    console.log('get set state');
     mode = event.detail.mode;
     selected = event.detail.selected;
     isOpen = event.detail.isOpen;
   }
 
   function setMode(event: CustomEvent<ModeEventProps>) {
-    console.log('get set mode');
     mode = event.detail.mode;
     if (mode !== null) {
       isOpen = true;
